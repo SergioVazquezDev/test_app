@@ -1,0 +1,39 @@
+<app-top-bar [pageTitle]="pageTitle"></app-top-bar>  
+<ion-searchbar animated (ionChange)="searchElement($event.detail.value)" placeholder="Buscar elemento"></ion-searchbar>
+
+<ion-content class="ion-padding">
+  
+  <div *ngIf="photosDataShow.length">
+    <ion-card *ngFor="let photoData of photosDataShow">
+      <ion-img [src]="photoData.photo" class="animated fadeIn fast"></ion-img>
+      <ion-card-content><b># {{photoData.id}}</b> - {{photoData.text}}</ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!photosDataShow.length && !searchText">
+    <ion-card *ngFor="let item of skeletonArray" class="animated flash slow infinite">
+      <ion-img src="./assets/img/not-found.png"></ion-img>
+      <ion-card-content>
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="!photosDataShow.length && searchText">
+    <ion-slides [options]="sliderOpts">
+      <ion-slide>
+        <ion-label>No exiten resultados para la búsqueda</ion-label>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadScrollData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando más datos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
