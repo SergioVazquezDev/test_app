@@ -39,10 +39,15 @@ $ ionic serve
 _Se indican las principales ubicaciones_:
 
 📂 /src/app - Contiene basicamente a la aplicación
+
 📁 /src/app/component - Contiene los componentes comunes de ionic
+
 📁 /src/app/model - Contiene los modelos o interfaces
+
 📁 /src/app/pipe - Contiene el pipe de filtrado
+
 📁 /src/app/services - Contiene los servicios comunes y de obtencion de datos mediante peticiones http
+
 📁 /src/app/pages - Contiene todas las páginas de la aplicación
 
 📂/src/enviroment - Ficheros con las variables para los distintos entornos.
