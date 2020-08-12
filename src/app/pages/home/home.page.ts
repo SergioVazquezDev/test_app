@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { PicsumService } from '../../services/picsum.service';
 import { PhotoData } from '../../model/photoData.model';
 import { Subscription } from 'rxjs';
-import { IonSearchbar, IonContent } from '@ionic/angular';
+import { IonSearchbar, IonContent, IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +30,8 @@ export class HomePage implements OnInit, OnDestroy {
 
   @ViewChild(IonContent, { static: false }) content: IonContent;
   @ViewChild(IonSearchbar) searchbar: IonSearchbar;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+
 
   constructor(private picsumService: PicsumService) {}
 
@@ -95,6 +97,7 @@ export class HomePage implements OnInit, OnDestroy {
       this.photosDataShow = [];
       this.addNewPagePhotoDataShow();
       this.scrollToTop();
+      this.infiniteScroll.disabled = false;
       return;
     }
 
@@ -127,6 +130,7 @@ export class HomePage implements OnInit, OnDestroy {
   resetSearchBar() {
     this.searchText = '';
     this.searchbar.value = '';
+    this.infiniteScroll.disabled = false;
   }
 
   scrollToTop() {
